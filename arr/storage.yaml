@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+  name: music-storage
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  capacity: 
+    storage: 5Gi
+  storageClassName: ""
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.10.199
+    path: /tank/music/
+
+--- 
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: 
+  name: music-storage
+  namespace: arr
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: ""
+  volumeName: music-storage
+
+--- 
+
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+  name: series-movies
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  capacity: 
+    storage: 1500Gi
+  storageClassName: ""
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.10.199
+    path: /bulk/media/
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: 
+  name: series-movies
+  namespace: arr
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1500Gi
+  storageClassName: ""
+  volumeName: series-movies

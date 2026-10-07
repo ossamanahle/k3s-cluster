@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent
+  namespace: arr
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: qbittorrent
+  template:
+    metadata:
+      labels:
+        app: qbittorrent
+    spec:
+      volumes: 
+        - name: music
+          persistentVolumeClaim: 
+            claimName: music-storage
+        - name: movies-series
+          persistentVolumeClaim:
+            claimName: series-movies
+        - name: config
+          persistentVolumeClaim:
+            claimName: qbit-config
+      containers:
+        - name: qbittorrent
+          image: lscr.io/linuxserver/qbittorrent:latest
+          ports:
+            - containerPort: 8080
+              name: web-ui
+              protocol: TCP
+            - containerPort: 6881
+              name: torrenting1
+              protocol: TCP
+            - containerPort: 6881
+              name: torrenting2
+              protocol: UDP
+          volumeMounts: 
+            - name: music
+              mountPath: /data
+            - name: movies-series
+              mountPath: /downloads/movies-series
+            - name: config
+              mountPath: /config
+          envFrom: 
+            - configMapRef: 
+                name: qbit-config
+
+--- 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: qbit-service
+  namespace: arr
+spec:
+  selector: 
+    app: qbittorrent
+  ports: 
+    - name: web-ui
+      port: 8080
+    - port: 6881
+      name: torrenting1
+      protocol: TCP
+    - port: 6881
+      name: torrenting2
+      protocol: UDP
