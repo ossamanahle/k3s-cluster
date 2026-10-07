@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nextcloud-config
+  namespace: nextcloud
+data:
+  POSTGRES_HOST: "192.168.10.158"
+  POSTGRES_DB: "nextcloud"
+  POSTGRES_USER: "nextcloud"
+  REDIS_HOST: "redis"
+  REDIS_HOST_PORT: "6379"
+  NEXTCLOUD_TRUSTED_DOMAINS: "nextcloud-ha.tail856dc9.ts.net nextcloud.home.lan"
+  OVERWRITEPROTOCOL: "https"
+  OVERWRITEHOST: "nextcloud-ha.tail856dc9.ts.net"
+  OVERWRITECLIURL: "https://nextcloud-ha.tail856dc9.ts.net"
+  TRUSTED_PROXIES: "10.42.0.0/16"
+  NEXTCLOUD_DATA_DIR: "/var/www/nextcloud-data"
+
+# This didn't completely work on run time
+# I had to configure the database manually through the UI
+# check /var/www/html/config/config.php
