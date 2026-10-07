@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pi-hole-app
+  namespace: pi-hole
   labels:
     app: pi-hole
 spec:
