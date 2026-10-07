@@ -1,5 +1,7 @@
 secret.yaml
 k3s-oauth.yaml
+getting-started
+getting-started/**
 .kube/
 .kube/**
 !.devcontainer/
