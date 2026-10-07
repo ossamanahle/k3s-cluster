@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: pi-hole-configmap
+data:
+  TZ: Europe/Nicosia
+  FTLCONF_dns_listeningMode: ALL

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pi-hole-app
+  labels:
+    app: pi-hole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pi-hole
+  template:
+    metadata:
+      labels:
+        app: pi-hole
+    spec:
+      containers:
+        - name: pi-hole
+          image: pihole/pihole:latest
+          readinessProbe: 
+            tcpSocket: 
+              port: 53
+          volumeMounts:
+            - name: pi-hole-data
+              mountPath: /etc/pihole
+          ports: 
+            - containerPort: 80
+              protocol: TCP
+            - containerPort: 443
+              protocol: TCP
+            - containerPort: 53
+              protocol: TCP
+            - containerPort: 53
+              protocol: UDP
+          envFrom: 
+            - configMapRef: 
+                name: pi-hole-configmap
+            - secretRef:
+                name: pi-hole-secret
+      volumes: 
+        - name: pi-hole-data
+          persistentVolumeClaim:
+            claimName: pi-hole-pvc

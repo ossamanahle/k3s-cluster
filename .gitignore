@@ -1,4 +1,7 @@
 secret.yaml
+k3s-oauth.yaml
+.kube/
+.kube/**
 !.devcontainer/
 !.devcontainer/**
 
