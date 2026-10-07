@@ -10,8 +10,9 @@
       "helm": "latest",
       "minikube": "none"
     },
-     "ghcr.io/duduribeiro/devcontainer-features/neovim:1": {
-       "version": "stable"
-   }
+    "ghcr.io/duduribeiro/devcontainer-features/neovim:1": {
+      "version": "stable"
+    },
+        "ghcr.io/jsburckhardt/devcontainer-features/flux:1": {}
+    }
   }
-}
