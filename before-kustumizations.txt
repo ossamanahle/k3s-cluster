@@ -1,0 +1,40 @@
+this file is a log to see flux will track before any kustomize use and after
+nothing applied using kustomize -- fri 09 oct 22:15
+  > kubectl get all -n flux-system
+  NAME                                         READY   STATUS    RESTARTS   AGE
+  pod/helm-controller-79dbc95468-n48d9         1/1     Running   0          2d6h
+  pod/kustomize-controller-78dcc6787c-xnqrs    1/1     Running   0          2d6h
+  pod/notification-controller-8466c9f5-r5wkd   1/1     Running   0          2d6h
+  pod/source-controller-694b749d65-h6npd       1/1     Running   0          2d6h
+
+  NAME                              TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+  service/notification-controller   ClusterIP   10.43.73.33    <none>        80/TCP    2d6h
+  service/source-controller         ClusterIP   10.43.166.12   <none>        80/TCP    2d6h
+  service/webhook-receiver          ClusterIP   10.43.172.72   <none>        80/TCP    2d6h
+
+  NAME                                      READY   UP-TO-DATE   AVAILABLE   AGE
+  deployment.apps/helm-controller           1/1     1            1           2d6h
+  deployment.apps/kustomize-controller      1/1     1            1           2d6h
+  deployment.apps/notification-controller   1/1     1            1           2d6h
+  deployment.apps/source-controller         1/1     1            1           2d6h
+
+  NAME                                               DESIRED   CURRENT   READY   AGE
+  replicaset.apps/helm-controller-79dbc95468         1         1         1       2d6h
+  replicaset.apps/kustomize-controller-78dcc6787c    1         1         1       2d6h
+  replicaset.apps/notification-controller-8466c9f5   1         1         1       2d6h
+  replicaset.apps/source-controller-694b749d65       1         1         1       2d6h
+
+  NAME                                                    AGE    READY   STATUS
+  kustomization.kustomize.toolkit.fluxcd.io/flux-system   2d6h   True    Applied revision: main@sha1:31b89969a8fecaa589d90726f8a840b940de21c8
+
+  NAME                                                 URL                                              AGE    READY   STATUS
+  gitrepository.source.toolkit.fluxcd.io/flux-system   https://github.com/ossamanahle/k3s-cluster.git   2d6h   True    stored artifact for revision 'main@sha1:31b89969a8fecaa589d90726f8a840b940de21c8'
+
+  NAME                                                              CHART                VERSION   SOURCE KIND      SOURCE NAME   AGE   READY   STATUS
+  helmchart.source.toolkit.fluxcd.io/default-metallb                metallb              0.16.1    HelmRepository   metallb       26h   True    pulled 'metallb' chart with version '0.16.1'
+  helmchart.source.toolkit.fluxcd.io/tailscale-tailscale-operator   tailscale-operator   1.102.3   HelmRepository   tailscale     26h   True    pulled 'tailscale-operator' chart with version '1.102.3'
+
+  NAME                                                URL                                     AGE   READY   STATUS
+  helmrepository.source.toolkit.fluxcd.io/metallb     https://metallb.github.io/metallb       26h   True    stored artifact: revision 'sha256:3a63279c46e99cbd64f3553ca54daa91469106e434284f4521d9b3944db03437'
+  helmrepository.source.toolkit.fluxcd.io/tailscale   https://pkgs.tailscale.com/helmcharts   26h   True    stored artifact: revision 'sha256:a88643e9070ef7e7ea6b4f2aa10c7efd7da9b9b34deada9998fe428194d42b51'
+
