@@ -1,13 +1,9 @@
 namespace: immich
 
 resources:
-  - deployment.yaml
-  - tailscale.yaml
   - namespace.yaml
-  - storage.yaml
-
-commonLabels:
-  app: immich
+  - redis
+  - server
 
 configMapGenerator:
   - name: immich-config

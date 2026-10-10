@@ -1,0 +1,10 @@
+resources:
+  - deployment.yaml
+  - storage.yaml
+  - tailscale.yaml
+
+labels:
+  - pairs:
+      app: immich
+    includeSelectors: true
+    includeTemplates: true
