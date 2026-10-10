@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates curl git zsh tmux openssh-client sudo atuin starship bat \
     zsh-autosuggestions zsh-syntax-highlighting \
     nodejs npm ncurses-term \
-    iptables iproute2 jq \
+    iptables iproute2 jq age \
     && rm -rf /var/lib/apt/lists/*
 
 # Tailscale client
