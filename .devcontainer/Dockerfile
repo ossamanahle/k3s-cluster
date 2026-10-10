@@ -7,6 +7,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     iptables iproute2 jq age \
     && rm -rf /var/lib/apt/lists/*
 
+# SOPS
+RUN curl -LO https://github.com/getsops/sops/releases/download/v3.13.3/sops-v3.13.3.linux.amd64 \
+  && mv sops-v3.13.3.linux.amd64 /usr/local/bin/sops \
+  && chmod +x /usr/local/bin/sops
+
 # Tailscale client
 RUN curl -fsSL https://pkgs.tailscale.com/stable/debian/trixie.noarmor.gpg \
       -o /usr/share/keyrings/tailscale-archive-keyring.gpg \
