@@ -2,16 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: immich
-  namespace: immich
 spec:
-  selector:
-    matchLabels:
-      app: immich
   replicas: 1
   template:
-    metadata:
-      labels:
-        app: immich
     spec:
       containers:
       - name: immich
@@ -38,10 +31,7 @@ apiVersion: v1
 kind: Service
 metadata: 
   name: immich
-  namespace: immich
 spec: 
-  selector: 
-    app: immich
   ports:
     - name: immich-port
       port: 2283

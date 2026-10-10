@@ -1,0 +1,20 @@
+namespace: immich
+
+resources:
+  - deployment.yaml
+  - tailscale.yaml
+  - namespace.yaml
+  - storage.yaml
+
+commonLabels:
+  app: immich
+
+configMapGenerator:
+  - name: immich-config
+    envs:
+      - ./config/immich.env
+
+secretGenerator:
+  - name: immich-secret
+    envs: 
+      - ./secrets/secrets.env
