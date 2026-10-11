@@ -1,0 +1,16 @@
+namespace: nextcloud
+
+resources:
+  - namespace.yaml
+  - redis
+  - server
+
+secretGenerator:
+  - name: nextcloud-secret
+    envs:
+      - ./secrets/nextcloud.env
+
+configMapGenerator:
+  - name: nextcloud-config
+    envs:
+      - ./config/nextcloud.env

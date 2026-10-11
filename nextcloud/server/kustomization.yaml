@@ -1,0 +1,10 @@
+resources:
+  - storage.yaml
+  - tailscale.yaml
+  - deployment.yaml
+
+labels:
+  - pairs:
+      app: nextcloud
+    includeSelectors: true
+    includeTemplates: true

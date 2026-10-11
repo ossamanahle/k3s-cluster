@@ -1,0 +1,9 @@
+resources:
+  - redis.yaml
+
+labels:
+  - pairs:
+      app: redis
+    includeSelectors: true
+    includeTemplates: true
+
