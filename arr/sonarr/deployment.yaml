@@ -16,7 +16,7 @@ spec:
       volumes:
         - name: movies-series
           persistentVolumeClaim:
-            claimName: movies-series
+            claimName: series-movies
         - name: config
           persistentVolumeClaim:
             claimName: sonarr-config
