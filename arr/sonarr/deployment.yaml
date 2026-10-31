@@ -25,7 +25,7 @@ spec:
           image: lscr.io/linuxserver/sonarr:latest
           volumeMounts:
             - name: movies-series
-              mountPath: /data
+              mountPath: /downloads/movies-series
             - name: config
               mountPath: /config
           envFrom:
