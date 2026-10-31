@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jelly-config
+  namespace: jelly
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 600Mi
+  storageClassName: local-path
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jelly-series
+spec:
+  accessModes: 
+    - ReadWriteMany
+  capacity:
+    storage: 1000Gi
+  storageClassName: nfs
+  nfs:
+    server: 192.168.10.199
+    path: /bulk/media/library/series
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jelly-series
+  namespace: jelly
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1000Gi
+  storageClassName: nfs
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jelly-movies
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 500Gi
+  storageClassName: nfs
+  nfs:
+    server: 192.168.10.199
+    path: /bulk/media/library/movies
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jelly-movies
+  namespace: jelly
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 500Gi
+  storageClassName: nfs

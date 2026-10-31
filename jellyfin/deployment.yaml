@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jelly
+  namespace: jelly
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jelly
+  template:
+    metadata:
+      labels:
+        app: jelly
+    spec:
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: jelly-config
+        - name: series
+          persistentVolumeClaim:
+            claimName: jelly-series
+        - name: movies
+          persistentVolumeClaim:
+            claimName: jelly-movies
+      containers:
+        - name: jelly
+          image: lscr.io/linuxserver/jellyfin:latest
+          envFrom:
+            - configMapRef:
+                name: jelly-config
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: series
+              mountPath: /data/tvshows
+            - name: movies
+              mountPath: /data/movies
+          ports:
+            - name: web-ui
+              containerPort: 8096
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: jelly-service
+  namespace: jelly
+spec:
+  selector:
+    app: jelly
+  ports:
+    - name: web-ui
+      port: 8096
