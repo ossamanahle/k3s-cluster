@@ -1,5 +1,4 @@
-# Post-rebuild steps
-
+# Post-rebuild steps -- CHANGED TO NIX-BASED DOCKER CONAINER, skip 1-6
 Everything below is wiped by a rebuild. Run in order.
 
 1. Add the `KUBECONFIG` export to zshrc.
@@ -31,3 +30,8 @@ Everything below is wiped by a rebuild. Run in order.
    ```bash
    tailscale configure kubeconfig tailscale-operator.tail856dc9.ts.net
    ```
+
+7. DOCKER: 
+    ```bash
+    nix build .#base && docker load < result
+    ```
