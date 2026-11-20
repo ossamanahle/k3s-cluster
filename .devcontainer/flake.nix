@@ -78,6 +78,7 @@
           "SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt"
           "TERMINFO_DIRS=/share/terminfo"
           "KUBECONFIG=/home/dev/.kube/config"
+          "SSH_AUTH_SOCK=/ssh-agent"
         ];
       };
 
