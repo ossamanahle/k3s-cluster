@@ -1,0 +1,14 @@
+namespace: navidrome
+
+resources:
+  - namespace.yaml
+  - service.yaml
+  - navidrome.yaml
+  - tailscale.yaml
+  - storage.yaml
+
+labels:
+  - pairs:
+      app: navidrome
+    includeSelectors: true
+    includeTemplates: true
